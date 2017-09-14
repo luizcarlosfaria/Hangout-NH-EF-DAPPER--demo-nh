@@ -1,0 +1,22 @@
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+DemoNH.*/[Bb]in/
+DemoNH.*/[Oo]bj/
+ConsoleApplication*/[Bb]in/
+ConsoleApplication*/[Oo]bj/
+/\[Publish\]/Log/*
+/\[Publish\]/Release/*
+/\[Publish\]/Debug/*
+
+.vs/*
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+
+# Others
+*.dbmdl
+
+.svn/
+/.project

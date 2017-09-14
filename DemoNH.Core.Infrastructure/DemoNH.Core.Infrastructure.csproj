@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BCB1C312-9177-4FB0-9835-BCD5FA49CF1E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DemoNH.Core.Infrastructure</RootNamespace>
+    <AssemblyName>DemoNH.Core.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\[Publish]\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUG_CONFIG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\DemoNH.Core.Infrastructure.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\[Publish]\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\DemoNH.Core.Infrastructure.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\[NuGet]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.NLog20">
+      <HintPath>..\[NuGet]\Common.Logging.NLog20.2.2.0\lib\net40\Common.Logging.NLog20.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\[NuGet]\EPPlus.4.0.0-beta2\lib\net20\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\[NuGet]\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\FluentValidation.5.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FuzzyString">
+      <HintPath>..\[References]\FuzzyString\FuzzyString.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.9.2.235, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\[NuGet]\MySql.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=0.23.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self, Version=0.23.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor, Version=0.23.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Nancy.Viewengines.Razor.0.23.2\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\NHibernate.4.0.0-Alpha2\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.2.3.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\[NuGet]\RabbitMQ.Client.3.3.2\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\[NuGet]\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\[References]\ServiceStack.Redis\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\[References]\ServiceStack.Redis\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\[References]\ServiceStack.Redis\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\[References]\ServiceStack.Redis\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Spring.Aop.2.0.0-RC1\lib\net45\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\[NuGet]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data, Version=2.0.0.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\[NuGet]\Spring.Data.2.0.0-RC1\lib\net45\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz2">
+      <HintPath>..\[NuGet]\Spring.Scheduling.Quartz2.2.0.0-RC1\lib\net45\Spring.Scheduling.Quartz2.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\[NuGet]\Spring.Services.2.0.0-RC1\lib\net45\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\[NuGet]\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Topshelf">
+      <HintPath>..\[NuGet]\Topshelf.3.1.3\lib\net40-full\Topshelf.dll</HintPath>
+    </Reference>
+    <Reference Include="Topshelf.NLog">
+      <HintPath>..\[NuGet]\Topshelf.NLog.3.1.3\lib\net40-full\Topshelf.NLog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="AOP\AopExtensions.cs" />
+    <Compile Include="AOP\Cache\CacheableAttribute.cs" />
+    <Compile Include="AOP\Cache\CacheAroundAdvice.cs" />
+    <Compile Include="AOP\Cache\CacheSerializationType.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContext.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractContextAttribute.cs" />
+    <Compile Include="AOP\Data\Abstractions\AbstractDataProcess.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContext.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBContextAttribute.cs" />
+    <Compile Include="AOP\Data\MongoDB\MongoDBDataProcess.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContext.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextAttribute.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextCreationStrategy.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHContextTransactionMode.cs" />
+    <Compile Include="AOP\Data\NHibernate\NHDataProcess.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContext.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContextAroundAdvice.cs" />
+    <Compile Include="AOP\Data\Redis\RedisContextAttribute.cs" />
+    <Compile Include="AOP\Data\Redis\RedisDataProcess.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlerAroundAdvice.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlingAttribute.cs" />
+    <Compile Include="AOP\ExceptionHandling\ExceptionHandlingStrategy.cs" />
+    <Compile Include="AOP\ExceptionHandling\LogContext.cs" />
+    <Compile Include="AtomicCounter\IAtomicCounter.cs" />
+    <Compile Include="AtomicCounter\IAtomicCounterFactory.cs" />
+    <Compile Include="AtomicCounter\INamedAtomicCounterFactory.cs" />
+    <Compile Include="AtomicCounter\NamedAtomicCounterFactory.cs" />
+    <Compile Include="AtomicCounter\SimpleAtomicCounter.cs" />
+    <Compile Include="AtomicCounter\SimpleAtomicCounterFactory.cs" />
+    <Compile Include="Data\ISessionFactoryBuilder.cs" />
+    <Compile Include="Extensions\System.Linq\System.Linq.Enumerable.cs" />
+    <Compile Include="IMatcher.cs" />
+    <Compile Include="MessageQueuing\AdvancedMessageProcessingWorker.cs" />
+    <Compile Include="MessageQueuing\ExceptionHandlingStrategy.cs" />
+    <Compile Include="MessageQueuing\Exceptions\BaseQueuingException.cs" />
+    <Compile Include="MessageQueuing\Exceptions\QueuingDiscardException.cs" />
+    <Compile Include="MessageQueuing\Exceptions\QueuingRequeueException.cs" />
+    <Compile Include="MessageQueuing\Exceptions\QueuingRetryException.cs" />
+    <Compile Include="MessageQueuing\RabbitMQManagement\IRabbitMQManagementClient.cs" />
+    <Compile Include="MessageQueuing\RabbitMQManagement\Model.GetQueues.cs" />
+    <Compile Include="MessageQueuing\RabbitMQManagement\Model.GetVirtualHosts.cs" />
+    <Compile Include="MessageQueuing\RabbitMQManagement\RabbitMQManagementClient.cs" />
+    <Compile Include="RegexHelper.cs" />
+    <Compile Include="Schedule\SchedulerService.cs" />
+    <Compile Include="Threading\ReadOnlyThreadStorageProxy.cs" />
+    <Compile Include="Threading\ReadWriteThreadStorageProxy.cs" />
+    <Compile Include="VariablesExtractorMatcher.cs" />
+    <Compile Include="TypeConversion\DirectoryInfoConverter.cs" />
+    <Compile Include="TypeConversion\ReaderQuotasConverter.cs" />
+    <Compile Include="AOP\Statistics\LogStatisticsAroundAdvice.cs" />
+    <Compile Include="AOP\Statistics\LogStatisticsAttribute.cs" />
+    <Compile Include="AOP\Statistics\LogStatisticsContext.cs" />
+    <Compile Include="Business\BusinessException.cs" />
+    <Compile Include="Business\Entity.cs" />
+    <Compile Include="Business\MongoEntity.cs" />
+    <Compile Include="Business\UndefinedException.cs" />
+    <Compile Include="Cache\CacheProvider.cs" />
+    <Compile Include="Cache\CacheProviderPool.cs" />
+    <Compile Include="Cache\Interfaces\ICacheProvider.cs" />
+    <Compile Include="Cache\Interfaces\ICacheProviderPool.cs" />
+    <Compile Include="Cache\Redis\RedisClientForSpring.cs" />
+    <Compile Include="Cache\Redis\RedisProviderBase.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="Data\ConnectionStrings\ConfigurableConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\DefaultConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\IConStrConfigDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\MongoDBConnectionString.cs" />
+    <Compile Include="Data\ConnectionStrings\NHConfigFileConnStrDiscovery.cs" />
+    <Compile Include="Data\ConnectionStrings\RedisConnectionString.cs" />
+    <Compile Include="Data\EnumValueAttribute.cs" />
+    <Compile Include="Data\IQueryExtensions.cs" />
+    <Compile Include="Data\PagedList.cs" />
+    <Compile Include="Data\Process\PersistenceDataProcessBase.cs" />
+    <Compile Include="Data\Process\QueryDataProcess.cs" />
+    <Compile Include="Data\SessionFactoryBuilder.cs" />
+    <Compile Include="DateRange.cs" />
+    <Compile Include="ExcelIntegration2\Model\ExcelDocument.cs" />
+    <Compile Include="ExcelIntegration2\Model\ExcelFetcher.cs" />
+    <Compile Include="ExcelIntegration2\Model\ExcelFormat.cs" />
+    <Compile Include="ExcelIntegration2\Model\ExcelSheet.cs" />
+    <Compile Include="ExcelIntegration2\Model\ExcelTable.cs" />
+    <Compile Include="Extensions\DemoNH.Core.Infrastructure.DateRange\DateRange.Reduce.cs" />
+    <Compile Include="Extensions\System.Boolean\Boolean.IfFalse.cs" />
+    <Compile Include="Extensions\System.Boolean\Boolean.IfTrue.cs" />
+    <Compile Include="Extensions\System.Boolean\Boolean.ToBinary.cs" />
+    <Compile Include="Extensions\System.Byte\Byte.ToBase64String.cs" />
+    <Compile Include="Extensions\System.Char\Char.Repeat.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddIf.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddIfNotContains.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddRange.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddRangeIf.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.AddRangeIfNotContains.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNotNullOrEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.IsNullOrEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.ICollection\ICollection.TryRemove.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.AddOrUpdate.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.GetOrAdd.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.TryAdd.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.TryGetValue.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.TryRemove.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IDictionary\IDictionary.TryUpdate.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.EmptyIfNull.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ForEach.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.IsEmpty.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.Join.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToQueue.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.IEnumerable\IEnumerable.ToStack.cs" />
+    <Compile Include="Extensions\System.Collections.IDictionary\IDictionary.ToHashtable.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteBoolean.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteDateTime.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteDouble.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteInt.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteNullableBoolean.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteNullableDateTime.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteNullableDouble.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteNullableInt.cs" />
+    <Compile Include="Extensions\System.Data.Common.DbCommand\DbCommand.ExecuteString.cs" />
+    <Compile Include="Extensions\System.Data.DataColumnCollection\DataColumnCollection.AddRange.cs" />
+    <Compile Include="Extensions\System.Data.DataColumnCollection\DataColumnCollection.AsEnumerable.cs" />
+    <Compile Include="Extensions\System.Data.DataColumnCollection\DataColumnCollection.ToList.cs" />
+    <Compile Include="Extensions\System.Data.DataRowCollection\DataRowCollection.AsEnumerable.cs" />
+    <Compile Include="Extensions\System.Data.DataRowCollection\DataRowCollection.ToList.cs" />
+    <Compile Include="Extensions\System.Data.DataTableCollection\DataTableCollection.AsEnumerable.cs" />
+    <Compile Include="Extensions\System.Data.DataTableCollection\DataTableCollection.ToList.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlBulkCopy\SqlBulkCopy.GetSqlConnection.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlBulkCopy\SqlBulkCopy.GetSqlTransaction.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlCommand\SqlCommand.ExecuteDataSet.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlCommand\SqlCommand.ExecuteDataTable.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.In.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.Reduce.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.EndOfDay.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.EndOfMonth.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.EndOfYear.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.IsFuture.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.IsPast.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.IsWeekDay.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.IsWeekendDay.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.StartOfDay.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.StartOfMonth.cs" />
+    <Compile Include="Extensions\System.DateTime\DateTime.StartOfYear.cs" />
+    <Compile Include="Extensions\System.Drawing.Image\Image.Cut.cs" />
+    <Compile Include="Extensions\System.Drawing.Image\Image.Scale.cs" />
+    <Compile Include="Extensions\System.Environment.SpecialFolder\Environment.SpecialFolder.GetFolderPath.cs" />
+    <Compile Include="Extensions\System.IO.DirectoryInfo\DirectoryInfo.CreateDirectory.cs" />
+    <Compile Include="Extensions\System.IO.FileInfo\FileInfo.GetFileNameWithoutExtension.cs" />
+    <Compile Include="Extensions\System.IO.FileInfo\FileInfo.ReadToEnd.cs" />
+    <Compile Include="Extensions\System.IO.Stream\Stream.ReadToEnd.cs" />
+    <Compile Include="Extensions\System.IO.Stream\Stream.ToByteArray.cs" />
+    <Compile Include="Extensions\System.Linq\System.Linq.IQueryable.cs" />
+    <Compile Include="Extensions\System.Net.Mail.MailMessage\MailMessage.Send.cs" />
+    <Compile Include="Extensions\System.Net.Mail.MailMessage\MailMessage.SendAsync.cs" />
+    <Compile Include="Extensions\System.Net.WebRequest\WebRequest.GetResponseSafe.cs" />
+    <Compile Include="Extensions\System.Net.WebResponse\WebResponse.ReadToEnd.cs" />
+    <Compile Include="Extensions\System.Net.WebResponse\WebResponse.ReadToEndAndDispose.cs" />
+    <Compile Include="Extensions\System.Object\Object.Between.cs" />
+    <Compile Include="Extensions\System.Object\Object.Clone.cs" />
+    <Compile Include="Extensions\System.Object\Object.Coalesce.cs" />
+    <Compile Include="Extensions\System.Object\Object.In.cs" />
+    <Compile Include="Extensions\System.Object\Object.InRange.cs" />
+    <Compile Include="Extensions\System.Object\Object.IsNotNull.cs" />
+    <Compile Include="Extensions\System.Object\Object.IsNull.cs" />
+    <Compile Include="Extensions\System.Object\Object.NotIn.cs" />
+    <Compile Include="Extensions\System.Object\Object.SerializeBinary.cs" />
+    <Compile Include="Extensions\System.Object\Object.SerializeXml.cs" />
+    <Compile Include="Extensions\System.Object\Object.To.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToBoolean.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToDateTime.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToDouble.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToInt.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToNullableBoolean.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToNullableDateTime.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToNullableDouble.cs" />
+    <Compile Include="Extensions\System.Object\Object.ToNullableInt.cs" />
+    <Compile Include="Extensions\System.Random\Random.CoinToss.cs" />
+    <Compile Include="Extensions\System.Random\Random.OneOf.cs" />
+    <Compile Include="Extensions\System.Reflection.MethodInfo\MethodInfo.GetReturnValueType.cs" />
+    <Compile Include="Extensions\System.Reflection.MethodInfo\MethodInfo.GetUniqueAndExpectedInputParameterType.cs" />
+    <Compile Include="Extensions\System.String\String.Reduce.cs" />
+    <Compile Include="Extensions\System.String\String.RemoveSpaces.cs" />
+    <Compile Include="Extensions\System.String\String.Replace.cs" />
+    <Compile Include="Extensions\System.String\String.SplitCamelCase.cs" />
+    <Compile Include="Extensions\System.String\String.ApplyPattern.cs" />
+    <Compile Include="Extensions\System.String\String.CamelCase.cs" />
+    <Compile Include="Extensions\System.String\String.CamelCaseSpecial.cs" />
+    <Compile Include="Extensions\System.String\String.ToDictionary.cs" />
+    <Compile Include="Extensions\System.String\String.Quotation.cs" />
+    <Compile Include="Extensions\System.String\String.Contains.cs" />
+    <Compile Include="Extensions\System.String\String.ContainsAll.cs" />
+    <Compile Include="Extensions\System.String\String.ContainsAny.cs" />
+    <Compile Include="Extensions\System.String\String.DecodeBase64.cs" />
+    <Compile Include="Extensions\System.String\String.DecryptRSA.cs" />
+    <Compile Include="Extensions\System.String\String.DeserializeBinary.cs" />
+    <Compile Include="Extensions\System.String\String.DeserializeXml.cs" />
+    <Compile Include="Extensions\System.String\String.EncodeBase64.cs" />
+    <Compile Include="Extensions\System.String\String.EncryptRSA.cs" />
+    <Compile Include="Extensions\System.String\String.FormatWith.cs" />
+    <Compile Include="Extensions\System.String\String.GetAfter.cs" />
+    <Compile Include="Extensions\System.String\String.GetBefore.cs" />
+    <Compile Include="Extensions\System.String\String.GetBetween.cs" />
+    <Compile Include="Extensions\System.String\String.HtmlDecode.cs" />
+    <Compile Include="Extensions\System.String\String.HtmlEncode.cs" />
+    <Compile Include="Extensions\System.String\String.IsAlpha.cs" />
+    <Compile Include="Extensions\System.String\String.IsAlphaNumeric.cs" />
+    <Compile Include="Extensions\System.String\String.IsLike.cs" />
+    <Compile Include="Extensions\System.String\String.IsNotNullOrEmpty.cs" />
+    <Compile Include="Extensions\System.String\String.IsNotNullOrWhiteSpace.cs" />
+    <Compile Include="Extensions\System.String\String.IsNullOrEmpty.cs" />
+    <Compile Include="Extensions\System.String\String.Left.cs" />
+    <Compile Include="Extensions\System.String\String.NullIfEmpty.cs" />
+    <Compile Include="Extensions\System.String\String.RemoveDiacritics.cs" />
+    <Compile Include="Extensions\System.String\String.Repeat.cs" />
+    <Compile Include="Extensions\System.String\String.ReplaceEmpty.cs" />
+    <Compile Include="Extensions\System.String\String.Reverse.cs" />
+    <Compile Include="Extensions\System.String\String.Right.cs" />
+    <Compile Include="Extensions\System.String\String.SaveAs.cs" />
+    <Compile Include="Extensions\System.String\String.Split.cs" />
+    <Compile Include="Extensions\System.String\String.ToByteArray.cs" />
+    <Compile Include="Extensions\System.String\String.ToDirectoryInfo.cs" />
+    <Compile Include="Extensions\System.String\String.ToEnum.cs" />
+    <Compile Include="Extensions\System.String\String.ToFileInfo.cs" />
+    <Compile Include="Extensions\System.String\String.ToMemoryStream.cs" />
+    <Compile Include="Extensions\System.String\String.ToWebRequest.cs" />
+    <Compile Include="Extensions\System.String\String.ToXDocument.cs" />
+    <Compile Include="Extensions\System.String\String.ToXmlDocument.cs" />
+    <Compile Include="Extensions\System.String\String.UrlDecode.cs" />
+    <Compile Include="Extensions\System.String\String.UrlEncode.cs" />
+    <Compile Include="Extensions\System.TimeSpan\TimeSpan.Ago.cs" />
+    <Compile Include="Extensions\System.TimeSpan\TimeSpan.FromNow.cs" />
+    <Compile Include="Extensions\System.TimeSpan\TimeSpan.UtcAgo.cs" />
+    <Compile Include="Extensions\System.TimeSpan\TimeSpan.UtcFromNow.cs" />
+    <Compile Include="Extensions\System.Type\Type.CreateInstance.cs" />
+    <Compile Include="Extensions\System.Type\Type.GetPrivateField.cs" />
+    <Compile Include="Extensions\System.Type\Type.GetPrivateProperty.cs" />
+    <Compile Include="Extensions\System.Type\Type.GetPublicField.cs" />
+    <Compile Include="Extensions\System.Type\Type.GetPublicProperty.cs" />
+    <Compile Include="Extensions\System.Web.HttpResponse\HttpResponse.SetFileNotFound.cs" />
+    <Compile Include="Extensions\System.Web.HttpResponse\HttpResponse.SetInternalServerError.cs" />
+    <Compile Include="Extensions\System.Web.UI.Control\Control.FindControl.cs" />
+    <Compile Include="Extensions\System.Web.UI.Control\Control.FindControlRecursive.cs" />
+    <Compile Include="FFMpeg\AscpectRation.cs" />
+    <Compile Include="FFMpeg\FFMpegOptions.cs" />
+    <Compile Include="FFMpeg\FFMpegService.cs" />
+    <Compile Include="FFMpeg\FFMpegServiceMode.cs" />
+    <Compile Include="FFMpeg\Files\AudioFile.cs" />
+    <Compile Include="FFMpeg\Files\ImageFile.cs" />
+    <Compile Include="FFMpeg\Files\MediaFile.cs" />
+    <Compile Include="FFMpeg\Files\VideoFile.cs" />
+    <Compile Include="FFMpeg\Formats\AudioFormat.cs" />
+    <Compile Include="FFMpeg\Formats\MediaFormat.cs" />
+    <Compile Include="FFMpeg\Formats\VideoFormat.cs" />
+    <Compile Include="Globalization\ContextualMessageSource.cs" />
+    <Compile Include="Globalization\GlobalizationAroundAdvice.cs" />
+    <Compile Include="Globalization\IContextualMessageSource.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\CryptographyHelper.cs" />
+    <Compile Include="Helpers\FuzzyComparisonOptions.cs" />
+    <Compile Include="Helpers\SerializationHelper.cs" />
+    <Compile Include="JsonHelper.cs" />
+    <Compile Include="Log\AbstractLogger.cs" />
+    <Compile Include="Log\DiagnosticsLogger.cs" />
+    <Compile Include="Log\ILogger.cs" />
+    <Compile Include="Log\LogLevel.cs" />
+    <Compile Include="Log\Model\LogEntryTransferObject.cs" />
+    <Compile Include="Log\Model\TagTransferObject.cs" />
+    <Compile Include="Log\Model\TagValueTransferObject.cs" />
+    <Compile Include="Log\QueueLogger.cs" />
+    <Compile Include="Log\NLogLogger.cs" />
+    <Compile Include="Log\SafeLogger.cs" />
+    <Compile Include="Merging\FileSystem\CopyResult.cs" />
+    <Compile Include="Merging\FileSystem\Directory.cs" />
+    <Compile Include="Merging\FileSystem\DirectoryType.cs" />
+    <Compile Include="Merging\FileSystem\Item.cs" />
+    <Compile Include="Merging\FileSystem\StepByStepDirectoryMerger.cs" />
+    <Compile Include="Merging\ItemToUpdate.cs" />
+    <Compile Include="Merging\MergeException.cs" />
+    <Compile Include="Merging\Merger.cs" />
+    <Compile Include="Merging\MergeResult.cs" />
+    <Compile Include="MessageQueuing\DeserializationException.cs" />
+    <Compile Include="MessageQueuing\DeserializationRejectionMessage.cs" />
+    <Compile Include="MessageQueuing\IMessageRejectionHandler.cs" />
+    <Compile Include="MessageQueuing\QueueInfo.cs" />
+    <Compile Include="MessageQueuing\IMessageFeedbackSender.cs" />
+    <Compile Include="MessageQueuing\IMessageProcessingWorker.cs" />
+    <Compile Include="MessageQueuing\IQueueConsumer.cs" />
+    <Compile Include="MessageQueuing\RabbitMQConnectionPool.cs" />
+    <Compile Include="MessageQueuing\RabbitMQConsumer.cs" />
+    <Compile Include="MessageQueuing\RabbitMQMessageFeedbackSender.cs" />
+    <Compile Include="MessageQueuing\ConsumerCountManager.cs" />
+    <Compile Include="MessageQueuing\RejectionException.cs" />
+    <Compile Include="MessageQueuing\SimpleMessageProcessingWorker.cs" />
+    <Compile Include="MessageQueuing\MessageDeserializationRejectionHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MessageQueuing\IQueueClient.cs" />
+    <Compile Include="MessageQueuing\IQueueConsumerWorker.cs" />
+    <Compile Include="MessageQueuing\RabbitMQClient.cs" />
+    <Compile Include="MessageQueuing\RabbitMQConsumerWorker.cs" />
+    <Compile Include="RetryManager.cs" />
+    <Compile Include="Security\Authentication\Credential.cs" />
+    <Compile Include="Security\IUserResolver.cs" />
+    <Compile Include="Serialization\Interfaces\ISerializer.cs" />
+    <Compile Include="Serialization\XmlSerializerUtils.cs" />
+    <Compile Include="Serialization\JsonSerializer.cs" />
+    <Compile Include="Services\Descriptor\AccountType.cs" />
+    <Compile Include="Services\Descriptor\ServiceDescriptor.cs" />
+    <Compile Include="Services\Descriptor\StartMode.cs" />
+    <Compile Include="Services\Host\MexBindingFactory.cs" />
+    <Compile Include="Services\Host\OragonServiceHost.cs" />
+    <Compile Include="Services\Host\ServiceEndpointConfiguration.cs" />
+    <Compile Include="Services\Host\ServiceHostFactoryObject.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\MessageEnvelope.cs" />
+    <Compile Include="Services\QueueServiceHelper.cs" />
+    <Compile Include="Services\ServiceContainer.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
+    <Compile Include="Services\ServiceProcessEntryPoint.cs" />
+    <Compile Include="Services\ServiceProxyFactory.cs" />
+    <Compile Include="Services\ServiceStartException.cs" />
+    <Compile Include="Services\ServiceStopException.cs" />
+    <Compile Include="Services\SpringServices\GenericStartUpService.cs" />
+    <Compile Include="Threading\ApartmentStateHelper.cs" />
+    <Compile Include="Threading\ExpressionBasedKeyParser.cs" />
+    <Compile Include="Threading\IKeyParser.cs" />
+    <Compile Include="Threading\MultiLevelStorage.cs" />
+    <Compile Include="Threading\SameKeyParser.cs" />
+    <Compile Include="Threading\SessionStorage.cs" />
+    <Compile Include="UnityOfWork\PersistenceAction.cs" />
+    <Compile Include="UnityOfWork\PersistenceQueueItem.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\IConventionConfigurer.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\ViewLocationConventionsConventionConfigurer.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\ResourceViewLocationMappingConventionConfigurer.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\SpringFrameworkNancyFxBootstrap.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\EmbeddedStaticMappingConventionConfigurer.cs" />
+    <Compile Include="Web\NancyFx\Bootstrapper\StaticMappingConventionConfigurer.cs" />
+    <Compile Include="Web\NancyFx\ControllerBase.cs" />
+    <Compile Include="Web\NancyFx\Models\ApiQueryArgs.cs" />
+    <Compile Include="Web\NancyFx\Models\ApiResults.cs" />
+    <Compile Include="Web\NancyFx\NancyFxHostService.cs" />
+    <Compile Include="Web\NancyFx\PathProviders\ReleaseRootPathProvider.cs" />
+    <Compile Include="Web\NancyFx\PathProviders\DebugRootPathProvider .cs" />
+    <Compile Include="Web\NancyFx\RazorConfiguration.cs" />
+    <Compile Include="Web\UX\IUXHandeableItem.cs" />
+    <Compile Include="Workflow\Facility.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\ExceptionStrategy.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\FlowRetryException.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\FlowRejectAndRequeueException.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\IFlowNotifier.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\InvokeResult.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedStateMachine.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedTransition.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\QueuedWorkflowMessageProcessingWorker.cs" />
+    <Compile Include="Workflow\QueuedWorkFlow\RouteConfiguration.cs" />
+    <Compile Include="Workflow\State.cs" />
+    <Compile Include="Workflow\StateComprarer.cs" />
+    <Compile Include="Workflow\StateMachine.cs" />
+    <Compile Include="Workflow\Transition.cs" />
+    <Compile Include="Workflow\TransitionComprarer.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+if $(ConfigurationName) == Debug (
+xcopy /s /y /R "$(SolutionDir)[NuGet]\Nancy.Viewengines.Razor.0.23.2\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin\"
+xcopy /s /y /R "$(SolutionDir)[NuGet]\Nancy.Viewengines.Razor.0.23.2\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin\"
+)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

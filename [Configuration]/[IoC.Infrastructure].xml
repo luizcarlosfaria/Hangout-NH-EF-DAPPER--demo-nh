@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity">
+	<!-- ################################################################################################ -->
+	<!-- Imports -->
+	<!-- ################################################################################################ -->
+	<import resource="file://~/IoC.Env.xml" />
+
+
+	<!--<import resource="assembly://DemoNH.Core.Data.Cache/DemoNH.Core.Data.Cache/[IoC].Data.Cache.xml" />
+	<import resource="assembly://DemoNH.Core.Data.IdeasMusik/DemoNH.Core.Data.IdeasMusik/[IoC].Data.IdeasMusik.xml" />
+	<import resource="assembly://DemoNH.Core.Data.DemoNHAgg/DemoNH.Core.Data.DemoNHAgg/[IoC].Data.DemoNHAgg.xml" />
+	<import resource="assembly://DemoNH.Core.Data.DemoNHMeta/DemoNH.Core.Data.DemoNHMeta/[IoC].Data.DemoNHMeta.xml" />
+	
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.BlanketLicense/[IoC].BlanketLicense.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Ingestion/[IoC].Ingestion.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataManagement/[IoC].MetadataManagement.xml" />-->
+
+    <import resource="assembly://DemoNH.Core.Data/DemoNH.Core.Data/[IoC].Data.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services/[IoC].Services.xml" />
+	<!--<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.AtomicDataOperations/[IoC].AtomicDataOperations.xml" />-->
+
+	<!--<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Materialization/[IoC].Materialization.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Indexing/[IoC].Indexing.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MediaServices/[IoC].MediaServices.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].MetadataInspector.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].MetadataValidation.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].PackageValidator.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.PhonogramMatch/[IoC].PhonogramMatch.xml" />
+	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.ReportsAutomation/[IoC].ReportsAutomation.xml" />-->
+
+
+	<!-- ################################################################################################ -->
+	<!-- NHContextAroundAdvice -->
+	<!-- ################################################################################################ -->
+	<object name="NHContextAroundAdvice" type="DemoNH.Core.Infrastructure.AOP.Data.NHibernate.NHContextAroundAdvice, DemoNH.Core.Infrastructure" singleton="true">
+		<property name="ElevateToSystemTransactionsIfRequired" value="false" />
+		<property name="SessionFactoryBuilders">
+			<list element-type="DemoNH.Core.Infrastructure.Data.SessionFactoryBuilder, DemoNH.Core.Infrastructure">
+				<ref object="SQLServerSessionFactoryBuilder" />
+				<ref object="MySQLServerSessionFactoryBuilder" />
+			</list>
+		</property>
+	</object>
+
+	<!-- ################################################################################################ -->
+	<!-- MongoDBAroundAdvice -->
+	<!-- ################################################################################################ -->
+	<object name="MongoDBContextAroundAdvice" type="DemoNH.Core.Infrastructure.AOP.Data.MongoDB.MongoDBContextAroundAdvice, DemoNH.Core.Infrastructure">
+		<property name="ConnectionStrings">
+			<list element-type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.MongoDBConnectionString, DemoNH.Core.Infrastructure">
+				<object type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.MongoDBConnectionString, DemoNH.Core.Infrastructure">
+					<property name="Key" value="MongoApps" />
+					<property name="ConnectionString" ref="AppsMongoConnectionString" />
+				</object>
+			</list>
+		</property>
+	</object>
+
+	<object name="GlobalizationAroundAdvice" type="DemoNH.Core.Infrastructure.Globalization.GlobalizationAroundAdvice, DemoNH.Core.Infrastructure">
+		<property name="PossibleArgumentNames" value="lcid,LCID,cultureName,culture" />
+		<property name="SuportedCultures">
+			<list element-type="System.Globalization.CultureInfo">
+				<object type="System.Globalization.CultureInfo">
+					<description>CultureInfo pt-BR</description>
+					<constructor-arg name="culture" value ="1046" />
+				</object>
+				<object type="System.Globalization.CultureInfo">
+					<description>CultureInfo en-US</description>
+					<constructor-arg name="culture" value ="1033" />
+				</object>
+				<object type="System.Globalization.CultureInfo">
+					<description>CultureInfo es-mx</description>
+					<constructor-arg name="culture" value ="2058" />
+				</object>
+			</list>
+		</property>
+	</object>
+
+	<object name="ContextualMessageSource" type="DemoNH.Core.Infrastructure.Globalization.ContextualMessageSource, DemoNH.Core.Infrastructure" />
+	<object name="ContextualMessageSourceAutoMapper" abstract="true">
+		<property name="ContextualMessageSource" ref="ContextualMessageSource" />
+	</object>
+
+	<!-- ################################################################################################ -->
+	<!-- ExceptionHandlerAroundAdvice -->
+	<!-- ################################################################################################ -->
+
+	<object name="ExceptionHandlerAroundAdvice" type="DemoNH.Core.Infrastructure.AOP.ExceptionHandling.ExceptionHandlerAroundAdvice, DemoNH.Core.Infrastructure" singleton="true">
+		<property name="GenericErrorMessage" value="Não foi possível realizar a operação solicitada. Contate o administrador da aplicação." />
+		<property name="EnableDebug" value="true" />
+		<property name="BusinessExceptionTypes">
+			<list element-type="System.Type">
+				<value>DemoNH.Core.Infrastructure.Business.BusinessException, DemoNH.Core.Infrastructure</value>
+				<value>NUnit.Framework.AssertionException, nunit.framework</value>
+			</list>
+		</property>
+		<!--<property name="BusinessExceptionType" value="System.Exception" />-->
+		<property name="Logger" ref="DefaultLogger" />
+	</object>
+
+	<object name="LogStatisticsAroundAdvice" type="DemoNH.Core.Infrastructure.AOP.Statistics.LogStatisticsAroundAdvice, DemoNH.Core.Infrastructure"  singleton="true">
+		<property name="Logger" ref="DefaultLogger" />
+	</object>
+
+	<object name="RabbitMQManagementClient" type="DemoNH.Core.Infrastructure.MessageQueuing.RabbitMQManagement.RabbitMQManagementClient, DemoNH.Core.Infrastructure">
+		<property name="RestClient">
+			<object type="RestSharp.RestClient, RestSharp">
+				<constructor-arg name="baseUrl" ref="RabbitMQ_Admin_Uri" />
+				<property name="Authenticator" ref="RabbitMQ_Admin_Authenticator"/>
+			</object>
+		</property>
+	</object>
+
+	<object name="DefaultLogger" type="DemoNH.Core.Infrastructure.Log.QueueLogger, DemoNH.Core.Infrastructure">
+		<property name="QueueClient">
+			<object name="RabbitMQClient" type="DemoNH.Core.Infrastructure.MessageQueuing.RabbitMQClient, DemoNH.Core.Infrastructure">
+				<property name="ConnectionPool">
+					<object type="DemoNH.Core.Infrastructure.MessageQueuing.RabbitMQConnectionPool, DemoNH.Core.Infrastructure">
+						<constructor-arg index="0">
+							<object type="RabbitMQ.Client.ConnectionFactory, RabbitMQ.Client" parent="ConnectionFactory">
+								<property name="VirtualHost" value="LogEngine" />
+							</object>
+						</constructor-arg>
+					</object>
+				</property>
+				<property name="Serializer" ref="JsonSerializer" />
+				<property name="Logger">
+					<object type="DemoNH.Core.Infrastructure.Log.NLogLogger, DemoNH.Core.Infrastructure" />
+				</property>
+			</object>
+		</property>
+		<property name="ExchangeName" value="LogEngine.Exchange" />
+		<property name="RoutingKey" value="" />
+		<property name="AdditionalMetadata">
+			<dictionary key-type="String" value-type="String" />
+		</property>
+	</object>
+
+	<!-- ################################################################################################ -->
+	<!-- Padrões -->
+	<!-- ################################################################################################ -->
+	<object id="AllServiceOperations" type="Spring.Aop.Support.SdkRegularExpressionMethodPointcut, Spring.Aop">
+		<property name="Patterns">
+			<list>
+				<value>DemoNH.Core.Services.*Service</value>
+				<value>DemoNH.Core.Services.WebManagement.ApiControllers.ApiControllerHelper</value>
+				<value>DemoNH.Core.IntegratedTests.*Service</value>
+				<value>DemoNH.Core.Services.WebManagement.Repositories.*Repository</value>
+				
+			</list>
+		</property>
+	</object>
+
+	<object name="JsonSerializer" type="DemoNH.Core.Infrastructure.Serialization.JsonSerializer, DemoNH.Core.Infrastructure" />
+
+	<!-- ############################################################################ -->
+	<!-- Redis Configuration -->
+	<!-- ############################################################################ -->
+	<object name="RedisContextAroundAdvice" type="DemoNH.Core.Infrastructure.AOP.Data.Redis.RedisContextAroundAdvice, DemoNH.Core.Infrastructure">
+		<property name="ConnectionStrings">
+			<list element-type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.RedisConnectionString, DemoNH.Core.Infrastructure">
+				<object type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.RedisConnectionString, DemoNH.Core.Infrastructure">
+					<property name="Key" value="AppsCache" />
+					<property name="ConnectionString" ref="Redis_Host" />
+					<property name="IsolationKey" value="DemoNH:Ingestion:Semaphore" />
+				</object>
+			</list>
+		</property>
+	</object>
+	<!-- ################################################################################################ -->
+	<!-- AOP Binding -->
+	<!-- ################################################################################################ -->
+	<aop:config>
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="NHContextAroundAdvice" />
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="MongoDBContextAroundAdvice" />
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="RedisContextAroundAdvice" />
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="GlobalizationAroundAdvice" />
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="LogStatisticsAroundAdvice" />
+
+		<!-- Aspectos de tratamento de exceção devem ser os últimos-->
+		<!-- NÃO COMENTAR! SE COMENTAR, LEMBRE-SE DE VOLTAR ANTES DE COMITAR. -->
+		<aop:advisor pointcut-ref="AllServiceOperations" advice-ref="ExceptionHandlerAroundAdvice" />
+	</aop:config>
+
+	<!-- ################################################################################################ -->
+	<!-- CustomConverterConfigurer -->
+	<!-- ################################################################################################ -->
+	<object id="CustomConverterConfigurer"	type="Spring.Objects.Factory.Config.CustomConverterConfigurer, Spring.Core">
+		<property name="CustomConverters">
+			<dictionary>
+				<entry key="System.IO.DirectoryInfo">
+					<object type="DemoNH.Core.Infrastructure.TypeConversion.DirectoryInfoConverter, DemoNH.Core.Infrastructure" />
+				</entry>
+				<entry key="System.Xml.XmlDictionaryReaderQuotas, System.Runtime.Serialization">
+					<object type="DemoNH.Core.Infrastructure.TypeConversion.ReaderQuotasConverter, DemoNH.Core.Infrastructure" />
+				</entry>
+			</dictionary>
+		</property>
+	</object>
+	<!-- ################################################################################################ -->
+	<!-- DefaultSMTPClient -->
+	<!-- ################################################################################################ -->
+	<object id="DefaultSMTPClient" type="System.Net.Mail.SmtpClient, System">
+		<constructor-arg name="host" value="smtp" />
+		<constructor-arg name="port" value="25" />
+		<!--<property name="Credentials">
+						<object type="System.Net.NetworkCredential, System">
+							<constructor-arg name="userName" value="" />
+							<constructor-arg name="password" value="" />
+						</object>
+					</property>-->
+	</object>
+	<object name="NetTcpBindingTemplate" abstract="true">
+		<property name="OpenTimeout" value="00:01:00" />
+		<property name="CloseTimeout" value="00:01:00" />
+		<property name="SendTimeout" value="00:30:00" />
+		<property name="ReceiveTimeout" value="00:30:00" />
+		<property name="TransferMode" value="Streamed" />
+		<property name="PortSharingEnabled" value="false" />
+		<property name="ListenBacklog" value="32" />
+		<property name="MaxConnections" value="64" />
+		<property name="MaxBufferSize" value="2147483647" />
+		<property name="MaxReceivedMessageSize" value="2147483647" />
+		<property name="MaxBufferPoolSize" value="2147483647" />
+		<property name="Security">
+			<object type="System.ServiceModel.NetTcpSecurity, System.ServiceModel">
+				<property name="Mode"  value="None" />
+			</object>
+		</property>
+		<property name="ReaderQuotas" value="Max" />
+	</object>
+	<object name="BasicHttpBindingTemplate" abstract="true">
+		<property name="MaxReceivedMessageSize" value="2147483647" />
+		<property name="MaxBufferSize" value="2147483647" />
+		<property name="MaxBufferPoolSize" value="2147483647" />
+	</object>
+</objects>

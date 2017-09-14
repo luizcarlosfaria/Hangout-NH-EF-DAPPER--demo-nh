@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity">
+	<!-- ################# ################# ################# ################# ################# ################# ################# ################# -->
+	<object name="AlunoService" type="DemoNH.Core.Services.AlunoService, DemoNH.Core">
+        <property name="WriteDP" ref="PersistenceDataProcess" />
+        <property name="AlunoDP" ref="AlunoDataProcess" />
+        <!--<property name="TurmaDP" ref="TurmaDataProcess" />-->
+    </object>
+	<!-- ################# ################# ################# ################# ################# ################# ################# ################# -->
+
+    <object name="AlunoServiceHostAdapter" type="DemoNH.Core.Infrastructure.Services.Host.ServiceHostFactoryObject, DemoNH.Core.Infrastructure">
+    <property name="TargetName" value="AlunoService" />
+    <property name="BaseAddresses" expression="@(WCF_Http_ServerAddress) + '/AlunoService/,' + @(WCF_NetTcp_ServerAddress) + '/AlunoService/'" />
+    <property name="Behaviors">
+        <list element-type="System.ServiceModel.Description.IServiceBehavior, System.ServiceModel">
+            <object type="System.ServiceModel.Description.ServiceMetadataBehavior, System.ServiceModel">
+                <property name="HttpGetEnabled" value="true" />
+            </object>
+        </list>
+    </property>
+    <property name="ServiceEndpoints" >
+        <list element-type="DemoNH.Core.Infrastructure.Services.Host.ServiceEndpointConfiguration, DemoNH.Core.Infrastructure">
+            <object type="DemoNH.Core.Infrastructure.Services.Host.ServiceEndpointConfiguration, DemoNH.Core.Infrastructure">
+                <property name="ServiceInterface" value="DemoNH.Core.Services.IAlunoService, DemoNH.Core.Domain" />
+                <property name="Name" value="AlunoService" />
+                <property name="Binding">
+                    <object type="System.ServiceModel.BasicHttpBinding, System.ServiceModel" parent="BasicHttpBindingTemplate" />
+                </property>
+            </object>
+            <object type="DemoNH.Core.Infrastructure.Services.Host.ServiceEndpointConfiguration, DemoNH.Core.Infrastructure">
+                <property name="ServiceInterface" value="DemoNH.Core.Services.IAlunoService, DemoNH.Core.Domain" />
+                <property name="Name" value="AlunoService" />
+                <property name="Binding">
+                    <object type="System.ServiceModel.NetTcpBinding, System.ServiceModel" parent="NetTcpBindingTemplate" />
+                </property>
+            </object>
+            <object type="DemoNH.Core.Infrastructure.Services.Host.ServiceEndpointConfiguration, DemoNH.Core.Infrastructure">
+                <property name="ServiceInterface" value="System.ServiceModel.Description.IMetadataExchange, System.ServiceModel" />
+                <property name="Name" value="mex" />
+                <property name="Binding">
+                    <object type="DemoNH.Core.Infrastructure.Services.Host.MexBindingFactory, DemoNH.Core.Infrastructure" >
+                        <property name="Protocol" value="Http" />
+                    </object>
+                </property>
+            </object>
+        </list>
+    </property>
+    </object>
+</objects>

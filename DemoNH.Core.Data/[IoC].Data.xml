@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity"
+	>
+
+    <object name="db-key" type="String" factory-method="Copy">
+        <constructor-arg index="0" value="SQLSERVER" />
+        <!--<constructor-arg index="0" value="MYSQL" />-->
+    </object>
+
+	<!-- ################################################################################################ -->
+	<!-- DemoNHMetaSessionFactoryBuilder -->
+	<!-- ################################################################################################ -->
+	<object id="SQLServerSessionFactoryBuilder" type="DemoNH.Core.Infrastructure.Data.SessionFactoryBuilder, DemoNH.Core.Infrastructure">
+		<property name="DefaultIsolationLevel" value="ReadUncommitted" />
+		<property name="TransactionIsolationLevel" value="ReadUncommitted" />
+		<property name="DefaultFlushMode" value="Never" />
+		<property name="TransactionFlushMode" value="Commit" />
+		<property name="ObjectContextKey" value="SQLSERVER" />
+		<property name="MaxFetchDepth" value="1" />
+		<property name="EnabledDiagnostics" value="false" />
+		<property name="CommandTimeout" value="2000" />
+		<property name="BatchSize" value="100" />
+		<property name="ConStrConfigDiscovery">
+			<object type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.ConfigurableConStrConfigDiscovery, DemoNH.Core.Infrastructure">
+				<property name="ConnectionString" ref="SQLServerConnectionString"/>
+				<property name="Name" value="SQLServerConnectionString" />
+				<property name="ProviderName" value="System.Data.SqlClient" />
+			</object>
+		</property>
+		<property name="TypeNames">
+			<list element-type="System.String">
+                <value>DemoNH.Core.Data.Mapping.AlunoMapper, DemoNH.Core.Data</value>
+                <value>DemoNH.Core.Data.Entity.Aluno, DemoNH.Core.Data</value>
+			</list>
+		</property>
+	</object>
+    <object id="MySQLServerSessionFactoryBuilder" type="DemoNH.Core.Infrastructure.Data.SessionFactoryBuilder, DemoNH.Core.Infrastructure">
+        <property name="DefaultIsolationLevel" value="ReadCommitted" />
+        <property name="TransactionIsolationLevel" value="ReadCommitted" />
+        <property name="DefaultFlushMode" value="Never" />
+        <property name="TransactionFlushMode" value="Commit" />
+        <property name="ObjectContextKey" value="MYSQL" />
+        <property name="MaxFetchDepth" value="1" />
+        <property name="EnabledDiagnostics" value="false" />
+        <property name="CommandTimeout" value="1000" />
+        <property name="BatchSize" value="50" />
+        <property name="ConStrConfigDiscovery">
+            <object type="DemoNH.Core.Infrastructure.Data.ConnectionStrings.ConfigurableConStrConfigDiscovery, DemoNH.Core.Infrastructure">
+                <property name="ConnectionString" ref="MySQLConnectionString"/>
+                <property name="Name" value="MySQLConnectionString" />
+                <property name="ProviderName" value="MySql.Data.MySqlClient" />
+            </object>
+        </property>
+        <property name="TypeNames">
+            <list element-type="System.String">
+                <value>DemoNH.Core.Data.Mapping.AlunoMapper, DemoNH.Core.Data</value>
+                <value>DemoNH.Core.Data.Entity.Aluno, DemoNH.Core.Data</value>
+            </list>
+        </property>
+    </object>
+	<!-- ################################################################################################ -->
+	<!-- MetaDataProcess (Abstrato, contém a configuração básica para todos os data process que usam este banco) -->
+	<!-- ################################################################################################ -->
+	<object id="DemoNHDataProcess" abstract="true">
+		<property name="ObjectContextKey" ref="db-key" />
+	</object>
+
+
+	<!-- ################################################################################################ -->
+	<!-- Todas as configurações dos Data Process (Abstrato, contém a configuração básica para todos os data process que usam este banco) -->
+	<!-- ################################################################################################ -->
+	<object id="PersistenceDataProcess" type="DemoNH.Core.Data.Process.PersistenceDataProcess, DemoNH.Core.Data" parent="DemoNHDataProcess" />
+    <!-- ################################################################################################ -->
+    <object id="AlunoDataProcess" type="DemoNH.Core.Data.Process.AlunoDataProcess, DemoNH.Core.Data" parent="DemoNHDataProcess" />
+    <!--<object id="TurmaDataProcess" type="DemoNH.Core.Data.Process.TurmaDataProcess, DemoNH.Core.Data" parent="DemoNHDataProcess" />-->
+
+
+
+</objects>

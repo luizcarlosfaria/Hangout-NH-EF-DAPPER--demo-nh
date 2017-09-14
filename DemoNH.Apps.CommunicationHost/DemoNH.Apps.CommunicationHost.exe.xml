@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects
+	xmlns="http://www.springframework.net"
+	xmlns:wcf="http://www.springframework.net/wcf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.net/aop"
+	xmlns:nv="http://www.springframework.net/nvelocity"
+	>
+
+	<object id="ServiceDescriptor" type="DemoNH.Core.Infrastructure.Services.Descriptor.ServiceDescriptor">
+		<property name="Name" value="DemoNH.Apps.CommunicationHost" />
+		<property name="FriendlyName" value="DemoNH Apps Communication Host Service" />
+		<property name="Description" value="Serviço de hospedagem de Serviços de Comunicação" />
+		<property name="StartMode" value="AutomaticallyDelayed" />
+		<!--<property name="IdentityType" value="NetworkService" />-->
+		<property name="IdentityType" value="Custom" />
+		<property name="CustomIdentityCredential" >
+			<object type="DemoNH.Core.Infrastructure.Security.Authentication.Credential, DemoNH.Core.Infrastructure">
+				<property name="Username" value="DemoNHdb\SvcUsr.Bo.Platform" />
+				<property name="Password" value="CBErS4Q8*$GhcV*dF8hb" />
+			</object>
+		</property>
+		<property name="Dependences">
+			<list element-type="String">
+				<!--<value>MSMQ</value>-->
+			</list>
+		</property>
+	</object>
+
+	<object id="ServiceManager" type="DemoNH.Core.Infrastructure.Services.ServiceManager, DemoNH.Core.Infrastructure">
+		<property name="StartTimeOut">
+			<object type="System.TimeSpan">
+				<constructor-arg name="hours" value="0" />
+				<constructor-arg name="minutes" value="5" />
+				<constructor-arg name="seconds" value="0" />
+			</object>
+		</property>
+		<property name="StopTimeOut" >
+			<object type="System.TimeSpan">
+				<constructor-arg name="hours" value="0" />
+				<constructor-arg name="minutes" value="5" />
+				<constructor-arg name="seconds" value="0" />
+			</object>
+		</property>
+	</object>
+
+
+</objects>
