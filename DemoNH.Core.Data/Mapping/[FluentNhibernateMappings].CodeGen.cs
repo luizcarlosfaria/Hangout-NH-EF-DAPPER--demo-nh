@@ -23,7 +23,39 @@ namespace DemoNH.Core.Data.Mapping
 			OptimisticLock.None();
 			DynamicUpdate();
 			Id(it => it.IdAluno, "[IdAluno]").GeneratedBy.Identity();
-			Map(it => it.Nome, "[Nome]").Nullable().CustomSqlType("varchar(50)").Length(50);
+			HasManyToMany(x => x.Turmas)
+				.ParentKeyColumns.Add("[IdAluno]")
+				.Table("[AlunoTurma]")
+				.ChildKeyColumns.Add("[IdTurma]")
+				.LazyLoad()
+				.Fetch.Select()
+				.AsBag();
+			Map(it => it.Nome, "[Nome]").Not.Nullable().CustomSqlType("varchar(30)").Length(30);
+			Map(it => it.Idade, "[Idade]").Nullable().CustomSqlType("int");
+			this.CompleteMappings();
+		}
+		
+	}
+	
+	public partial class TurmaMapper : ClassMap<DemoNH.Core.Data.Entity.Turma>
+	{
+
+		partial void CompleteMappings();
+
+		public TurmaMapper()
+		{
+			Table("[Turma]");
+			OptimisticLock.None();
+			DynamicUpdate();
+			Id(it => it.IdTurma, "[IdTurma]").GeneratedBy.Assigned();
+			HasManyToMany(x => x.Alunos)
+				.ParentKeyColumns.Add("[IdTurma]")
+				.Table("[AlunoTurma]")
+				.ChildKeyColumns.Add("[IdAluno]")
+				.LazyLoad()
+				.Fetch.Select()
+				.AsBag();
+			Map(it => it.Nome, "[Nome]").Not.Nullable().CustomSqlType("varchar(30)").Length(30);
 			this.CompleteMappings();
 		}
 		

@@ -28,7 +28,6 @@ namespace DemoNH.Core.Infrastructure.AOP.Data.MongoDB
 
 		protected override void DisposeFields()
 		{
-			this.Server = null;
 			this.Client = null;
 			base.DisposeFields();
 		}

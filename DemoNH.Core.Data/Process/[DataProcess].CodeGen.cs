@@ -13,6 +13,11 @@ namespace DemoNH.Core.Data.Process
 		
 
 	}
+	public partial class TurmaDataProcess : QueryDataProcess<DemoNH.Core.Data.Entity.Turma>
+	{
+		
+
+	}
 	
 }
 

@@ -86,14 +86,7 @@
 		<property name="Logger" ref="DefaultLogger" />
 	</object>
 
-	<object name="RabbitMQManagementClient" type="DemoNH.Core.Infrastructure.MessageQueuing.RabbitMQManagement.RabbitMQManagementClient, DemoNH.Core.Infrastructure">
-		<property name="RestClient">
-			<object type="RestSharp.RestClient, RestSharp">
-				<constructor-arg name="baseUrl" ref="RabbitMQ_Admin_Uri" />
-				<property name="Authenticator" ref="RabbitMQ_Admin_Authenticator"/>
-			</object>
-		</property>
-	</object>
+	
 
 	<object name="DefaultLogger" type="DemoNH.Core.Infrastructure.Log.QueueLogger, DemoNH.Core.Infrastructure">
 		<property name="QueueClient">

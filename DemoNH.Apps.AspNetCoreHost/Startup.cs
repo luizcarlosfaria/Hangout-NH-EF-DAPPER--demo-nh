@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Spring.Context.Support;
 using Spring.Context;
+using DemoNH.Core.Services;
 
 namespace DemoNH.Apps.AspNetCoreHost
 {
@@ -25,7 +26,7 @@ namespace DemoNH.Apps.AspNetCoreHost
         {
             IApplicationContext springContext = new Spring.Context.Support.XmlApplicationContext(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,  "[IoC.Infrastructure].xml"));
             springContext.GetObject<Core.Infrastructure.Services.IService>("AlunoServiceHostAdapter").Start();
-            services.AddSingleton(springContext);
+            services.AddSingleton(springContext.GetObject<IAlunoService>());
             services.AddMvc();
         }
 

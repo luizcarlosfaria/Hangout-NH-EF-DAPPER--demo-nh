@@ -9,13 +9,13 @@ using DemoNH.Core.Data.Entity;
 
 namespace DemoNH.Core.Services
 {
-	public class AlunoService : IAlunoService
-	{
+    public class AlunoService : IAlunoService
+    {
         #region Public Properties
 
         public PersistenceDataProcess WriteDP { get; set; }
         public AlunoDataProcess AlunoDP { get; set; }
-        
+
         //public TurmaDataProcess TurmaDP { get; set; }
 
         #endregion Public Properties
@@ -25,20 +25,29 @@ namespace DemoNH.Core.Services
         [NHContext(contextKey: "SQLSERVER", creationStrategy: NHContextCreationStrategy.CreateNew, transactionMode: NHContextTransactionMode.Transactioned)]
         //[NHContext(contextKey: "MYSQL", creationStrategy: NHContextCreationStrategy.CreateNew, transactionMode: NHContextTransactionMode.None)]
         public void Execute()
-		{
-            //Turma turma = new Turma() { Nome = "Turma do Canal" };
+        {
+            //var turma = new Turma() { IdTurma = 1, Nome = "Turma do Canal .NET" };
             //this.WriteDP.Save(turma);
 
-            this.WriteDP.Save(new Aluno
+            //var aluno = new Aluno
+            //{
+            //    Nome = "Usuário de exemplo 15",
+            //    Idade = 15,
+            //    //Turma = turma
+            //    Turmas = new List<Turma>() { turma }
+            //};
+            //this.WriteDP.Save(aluno);
+
+            var aluno = this.AlunoDP.GetSingleBy(it => it.Idade == 15);
+            Console.WriteLine(aluno.Nome);
+            foreach (var turma in aluno.Turmas)
             {
-                Nome = "Luiz Carlos Faria",
-                //Turma = turma
-            });
+                Console.WriteLine(turma.Nome);
+            }
 
 
-            
         }
 
-		#endregion Public Properties
-	}
+        #endregion Public Properties
+    }
 }

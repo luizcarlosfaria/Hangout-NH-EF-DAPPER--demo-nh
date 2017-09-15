@@ -18,7 +18,7 @@ namespace DemoNH.Core.Infrastructure.AOP.Data.MongoDB
 		{
 			return this
 					.ObjectContext
-					.Server
+					.Client
 					.GetDatabase(this.DataBaseName);
 		}
 
