@@ -1,5 +1,8 @@
 # Hangout-NH-EF-DAPPER--demo-nh
 
+## TL;DR
+> Esse é um projeto velho, feito sobre conceitos velhos, que me ajudaram a construir coisas incríveis, com os mais variados perfís profissionais. Desde bons juniors, a péssimos seniors e vice-versa. Boa parte desse texto falar das features, do que era possível fazer com essa arquitetura. O código está defasado, diversas implementações endereçam recursos e features do .NET que cairam em desuso. Mas, como demo, com foco no NHibernate, é muito bom para ver as coisas coexistindo.
+
 Pessoal, perdão, mas esse projeto tem pelo menos 5 anos, portanto tem coisas que não estão da forma como eu gostaria. Uma delas (que já melhorei) é o aspecto de utilização do repositório local [nuget], pois na época meu servidor de build não tinha acesso à internet.
 
 Essa demo conta com outros elementos muito interessantes, no entanto esse é um projeto bem antigo.
