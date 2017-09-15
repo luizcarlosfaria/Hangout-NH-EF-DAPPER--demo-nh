@@ -15,13 +15,11 @@ namespace DemoNH.Core.Infrastructure.AOP.Data.MongoDB
 		protected override void Initialize()
 		{
 			this.Client = new MongoDBDriver.MongoClient(this.ContextAttribute.MongoDBConnectionString.ConnectionString);
-			this.Server = this.Client.GetServer();
 		}
 
 
 		public MongoDBDriver.MongoClient Client { get; private set; }
 
-		public MongoDBDriver.MongoServer Server { get; private set; }
 
 		protected override void DisposeContext()
 		{

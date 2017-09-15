@@ -10,29 +10,8 @@
 	<!-- ################################################################################################ -->
 	<import resource="file://~/IoC.Env.xml" />
 
-
-	<!--<import resource="assembly://DemoNH.Core.Data.Cache/DemoNH.Core.Data.Cache/[IoC].Data.Cache.xml" />
-	<import resource="assembly://DemoNH.Core.Data.IdeasMusik/DemoNH.Core.Data.IdeasMusik/[IoC].Data.IdeasMusik.xml" />
-	<import resource="assembly://DemoNH.Core.Data.DemoNHAgg/DemoNH.Core.Data.DemoNHAgg/[IoC].Data.DemoNHAgg.xml" />
-	<import resource="assembly://DemoNH.Core.Data.DemoNHMeta/DemoNH.Core.Data.DemoNHMeta/[IoC].Data.DemoNHMeta.xml" />
-	
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.BlanketLicense/[IoC].BlanketLicense.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Ingestion/[IoC].Ingestion.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataManagement/[IoC].MetadataManagement.xml" />-->
-
     <import resource="assembly://DemoNH.Core.Data/DemoNH.Core.Data/[IoC].Data.xml" />
 	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services/[IoC].Services.xml" />
-	<!--<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.AtomicDataOperations/[IoC].AtomicDataOperations.xml" />-->
-
-	<!--<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Materialization/[IoC].Materialization.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.Indexing/[IoC].Indexing.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MediaServices/[IoC].MediaServices.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].MetadataInspector.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].MetadataValidation.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.MetadataInspector/[IoC].PackageValidator.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.PhonogramMatch/[IoC].PhonogramMatch.xml" />
-	<import resource="assembly://DemoNH.Core/DemoNH.Core.Services.ReportsAutomation/[IoC].ReportsAutomation.xml" />-->
-
 
 	<!-- ################################################################################################ -->
 	<!-- NHContextAroundAdvice -->

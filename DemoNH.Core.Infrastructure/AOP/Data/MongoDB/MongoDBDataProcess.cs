@@ -14,7 +14,7 @@ namespace DemoNH.Core.Infrastructure.AOP.Data.MongoDB
 
 		protected string DataBaseName { get; set; }
 
-		protected virtual MongoDBDriver.MongoDatabase GetDataBase()
+		protected virtual MongoDBDriver.IMongoDatabase GetDataBase()
 		{
 			return this
 					.ObjectContext
@@ -22,7 +22,7 @@ namespace DemoNH.Core.Infrastructure.AOP.Data.MongoDB
 					.GetDatabase(this.DataBaseName);
 		}
 
-		protected virtual MongoDBDriver.MongoCollection<T> Collection
+		protected virtual MongoDBDriver.IMongoCollection<T> Collection
 		{
 			get
 			{

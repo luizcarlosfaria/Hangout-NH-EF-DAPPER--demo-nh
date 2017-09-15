@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Common.Logging" Version="3.1.0" />
+    <PackageReference Include="Common.Logging.Core" Version="3.1.0" />
+    <PackageReference Include="Common.Logging.NLog20" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.4.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
+    <PackageReference Include="NLog" Version="3.1.0" />
+    <PackageReference Include="NUnit" Version="2.6.3" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
+    <PackageReference Include="ServiceStack.Redis" Version="4.5.14" />
+    <PackageReference Include="Spring.Aop" Version="2.0.1" />
+    <PackageReference Include="Spring.Core" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemoNH.Core.Data\DemoNH.Core.Data.csproj" />
+    <ProjectReference Include="..\DemoNH.Core.Domain\DemoNH.Core.Domain.csproj" />
+    <ProjectReference Include="..\DemoNH.Core.Infrastructure\DemoNH.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\DemoNH.Core\DemoNH.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\[NuGet]\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\[NuGet]\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.NLog20">
+      <HintPath>..\[NuGet]\Common.Logging.NLog20.2.2.0\lib\net40\Common.Logging.NLog20.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\[NuGet]\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\[NuGet]\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\[NuGet]\RabbitMQ.Client.3.3.2\lib\net30\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\[NuGet]\Spring.Core.2.0.0-RC1\lib\net45\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="DemoNH.Apps.AspNetCoreHost.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&#xD;&#xA;ECHO ***********************************************&#xD;&#xA;ECHO Copiando [Configuration]\[IoC.Infrastructure].xml&#xD;&#xA;ECHO ***********************************************&#xD;&#xA;copy &quot;$(SolutionDir)[Configuration]\[IoC.Infrastructure].xml&quot; &quot;$(TargetDir)[IoC.Infrastructure].xml&quot; /Y&#xD;&#xA;&#xD;&#xA;ECHO ***********************************************&#xD;&#xA;ECHO Copiando IoC.Env.$(ConfigurationName).xml&#xD;&#xA;ECHO ***********************************************&#xD;&#xA;copy &quot;$(SolutionDir)[Configuration]\IoC.Env.$(ConfigurationName).xml&quot; &quot;$(TargetDir)IoC.Env.xml&quot; /Y&#xD;&#xA;" />
+  </Target>
+</Project>
