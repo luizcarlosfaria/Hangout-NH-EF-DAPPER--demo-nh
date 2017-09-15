@@ -38,6 +38,39 @@ O host wcf também é um recurso interessante, visto que na época era o método
 
 Como disse, esse é mais um projeto que exemplifique um design do que uma implementação final. A versão que me basei para criar essa demo tem o projeto de arquitetura como algo monolítico, e suporta exclusivamente Spring .NET. As versões subsequentes já suportavam Ninject e SimpleInjector, elementos que abordo no [post](http://luizcarlosfaria.net/blog/oragon-architecture-application-hosting-suporte-para-nijnect-e-simpleinjector-e-qualquer-outro-container/). Essa foi uma das últimas modificações que fiz no projeto e desde então, com o .NET Core, ainda estou revendo se cabe ou não uma migração.
 
+## Getting Started
+O arquivo de configuração [IoC.Env.Debug.xml](https://github.com/luizcarlosfaria/Hangout-NH-EF-DAPPER--demo-nh/blob/master/%5BConfiguration%5D/IoC.Env.Debug.xml) deve ser alterado. 
+```
+    <!--SQL Server-->
+    <object name="SQLServerConnectionString" type="String" factory-method="Copy">
+        <constructor-arg index="0" value="Data Source=192.168.1.14\SQLEXPRESS;Database=AppNHDemo;User ID=demo-nh-user;Password=demo-nh-user;Connect Timeout=2000; pooling='true'; Max Pool Size=1000;Application Name=DemoNHCore" />
+    </object>
+
+    <!--MySql -->
+    <object name="MySQLConnectionString" type="String" factory-method="Copy">
+        <constructor-arg index="0" value="host=xxxHOSTxxx;database=xxxDBxxx;User id=xxxUSUARIOxxx;password=xxxSENHAxxx;port=3306" />
+    </object>
+
+    <!--MongoDB-->
+    <object name="AppsMongoConnectionString" type="String" factory-method="Copy">
+        <constructor-arg index="0" value="mongodb://xxxUSUARIOxxx:xxxSENHAxxx@xxxHOSTxxx:27017" />
+    </object>
+
+    <!--RabbitMQ-->
+    <object name="ConnectionFactory" abstract="true">
+        <!--<property name="VirtualHost" value="XXXXXXXXXXXXXXXXXXXXXXXXXXX" />-->
+        <property name="HostName" value="127.0.0.1" />
+        <property name="Port" value="5672" />
+        <property name="UserName" value="DemoNHCoreApp" />
+        <property name="Password" value="7NZ4U5st6vtcw0DB73k3d8iqwqHA2Mni79ZEJEmCmDa1G6Wnm2" />
+        <property name="RequestedHeartbeat" value="600" />
+    </object>
+
+    <!--Redis-->
+    <object name="Redis_Host" type="String" factory-method="Copy">
+        <constructor-arg index="0" value="127.0.0.1:6379" />
+    </object>
+```
 
 
 Esse projeto usa docker para subir RabbitMQ e Redis.

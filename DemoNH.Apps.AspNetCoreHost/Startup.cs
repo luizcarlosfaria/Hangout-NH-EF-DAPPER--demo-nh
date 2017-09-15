@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,8 +25,16 @@ namespace DemoNH.Apps.AspNetCoreHost
         public void ConfigureServices(IServiceCollection services)
         {
             IApplicationContext springContext = new Spring.Context.Support.XmlApplicationContext(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,  "[IoC.Infrastructure].xml"));
-            springContext.GetObject<Core.Infrastructure.Services.IService>("AlunoServiceHostAdapter").Start();
+
+            //Configuração de referência: https://github.com/luizcarlosfaria/Hangout-NH-EF-DAPPER--demo-nh/blob/master/DemoNH.Core/Services/%5BIoC%5D.Services.xml
+            //Aqui estou subindo o host WCF para o serviço AlunoService
+            //Caso descomente, precisa executar o visual studio como administrador.
+            //springContext.GetObject<Core.Infrastructure.Services.IService>("AlunoServiceHostAdapter").Start();
+
+            //Aqui estou trazendo do container padrão para o container do ASP.NET Core.
             services.AddSingleton(springContext.GetObject<IAlunoService>());
+
+
             services.AddMvc();
         }
 
