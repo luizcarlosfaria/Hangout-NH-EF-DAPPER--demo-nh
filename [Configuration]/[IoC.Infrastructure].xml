@@ -86,8 +86,6 @@
 		<property name="Logger" ref="DefaultLogger" />
 	</object>
 
-	
-
 	<object name="DefaultLogger" type="DemoNH.Core.Infrastructure.Log.QueueLogger, DemoNH.Core.Infrastructure">
 		<property name="QueueClient">
 			<object name="RabbitMQClient" type="DemoNH.Core.Infrastructure.MessageQueuing.RabbitMQClient, DemoNH.Core.Infrastructure">
@@ -120,10 +118,6 @@
 		<property name="Patterns">
 			<list>
 				<value>DemoNH.Core.Services.*Service</value>
-				<value>DemoNH.Core.Services.WebManagement.ApiControllers.ApiControllerHelper</value>
-				<value>DemoNH.Core.IntegratedTests.*Service</value>
-				<value>DemoNH.Core.Services.WebManagement.Repositories.*Repository</value>
-				
 			</list>
 		</property>
 	</object>
